@@ -57,6 +57,23 @@ describe Saulabs::TrueSkill::FactorGraph, "two players" do
     end
   
   end
+
+  describe 'loss with standard rating' do
+    
+    before :each do
+      TrueSkill::FactorGraph.new(@teams, [2,1]).update_skills
+    end
+    
+    it "should change first players rating to [20.6041679, 7.1714755]" do
+      @teams[0][0].should eql_rating(20.6041679, 7.1714755)
+    end
+
+    it "should change second players rating to [29.395832, 7.1714755]" do
+      @teams[1][0].should eql_rating(29.395832, 7.1714755)
+    end
+  
+  end
+
   
   describe 'draw with standard rating' do
     
